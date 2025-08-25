@@ -1,31 +1,31 @@
-# 🚀 File Upload Application
+# File Upload Application
 
 A full-stack web application enabling users to securely upload and manage profile images on Amazon S3. Built with Spring Boot backend and React.js frontend, featuring robust cloud integration and secure file handling.
 
-## ✨ Features
+## Features
 
-### 🔐 Authentication & User Management
+### Authentication & User Management
 - **User Registration & Login**: Secure authentication system with JWT tokens
 - **Customer CRUD Operations**: Create, read, update, and delete customer profiles
 - **Role-based Access Control**: Secure endpoints with proper authorization
 
-### 📁 File Upload System
+### File Upload System
 - **Drag & Drop Interface**: Modern React dropzone for intuitive file uploads
 - **Profile Image Management**: Upload and update customer profile pictures
 - **Multiple File Formats**: Support for various image formats (JPG, PNG, etc.)
 - **Real-time Upload**: Instant feedback and progress tracking
 
-### ☁️ Cloud Integration
+### Cloud Integration
 - **Amazon S3 Storage**: Secure cloud storage for uploaded files
 - **UUID-based Naming**: Unique file identifiers for security
 - **Scalable Architecture**: Built for production cloud deployment
 
-### 🗄️ Database & Persistence
+### Database & Persistence
 - **PostgreSQL Database**: Robust data storage with proper relationships
 - **Profile Image Tracking**: Database integration for image metadata
 - **Migration System**: Automated database schema management
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Backend
 - **Java 17** - Core application language
@@ -49,7 +49,7 @@ A full-stack web application enabling users to securely upload and manage profil
 - **Maven** - Backend dependency management
 - **npm** - Frontend package management
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Java 17 or higher
@@ -86,7 +86,7 @@ docker-compose up -d db
 2. Configure AWS credentials in `application.yml`
 3. Set appropriate bucket permissions
 
-## 📱 API Endpoints
+## API Endpoints
 
 ### Authentication
 - `POST /api/v1/auth/login` - User login
@@ -102,7 +102,7 @@ docker-compose up -d db
 - `POST /api/v1/customers/{id}/profile-image` - Upload profile image
 - `GET /api/v1/customers/{id}/profile-image` - Retrieve profile image
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -122,7 +122,7 @@ docker-compose up -d db
                        └─────────────────┘
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 ```yaml
@@ -144,7 +144,7 @@ aws:
 VITE_API_BASE_URL=http://localhost:8080
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Backend Tests
 ```bash
@@ -158,7 +158,7 @@ cd frontend/react
 npm test
 ```
 
-## 🚀 Deployment
+## Deployment
 
 ### Docker Deployment
 ```bash
@@ -172,7 +172,7 @@ docker-compose up --build
 - Use AWS RDS for PostgreSQL
 - Configure S3 bucket for production
 
-## 📊 Database Schema
+## Database Schema
 
 ### Customer Table
 ```sql
@@ -187,7 +187,7 @@ CREATE TABLE customer (
 );
 ```
 
-## 🔒 Security Features
+## Security Features
 
 - **JWT Authentication**: Secure token-based authentication
 - **Password Encryption**: BCrypt password hashing
@@ -195,7 +195,7 @@ CREATE TABLE customer (
 - **Input Validation**: Comprehensive form validation
 - **SQL Injection Prevention**: Parameterized queries
 
-## 🎯 Use Cases
+## Use Cases
 
 - **E-commerce Platforms**: Customer profile management
 - **Social Networks**: User avatar uploads
@@ -203,7 +203,7 @@ CREATE TABLE customer (
 - **Educational Platforms**: Student profile management
 - **Healthcare Systems**: Patient photo management
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -211,24 +211,12 @@ CREATE TABLE customer (
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Built with Spring Boot and React.js
 - File upload powered by AWS S3
 - UI components from Chakra UI
 - File handling with React Dropzone
 
-## 📞 Support
 
-For support and questions:
-- Create an issue in this repository
-- Check the documentation
-- Review the API endpoints
-
----
-
-**Built with ❤️ using modern web technologies**
