@@ -1,4 +1,4 @@
-# File Upload Application
+# Cloud Storage Uploader
 
 A full-stack web application enabling users to securely upload and manage profile images on Amazon S3. Built with Spring Boot backend and React.js frontend, featuring robust cloud integration and secure file handling.
 
