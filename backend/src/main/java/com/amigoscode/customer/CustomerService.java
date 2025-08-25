@@ -6,8 +6,12 @@ import com.amigoscode.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import com.amigoscode.s3.S3Service;
+import com.amigoscode.s3.S3Buckets;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -16,13 +20,19 @@ public class CustomerService {
     private final CustomerDao customerDao;
     private final CustomerDTOMapper customerDTOMapper;
     private final PasswordEncoder passwordEncoder;
+    private final S3Service s3Service;
+    private final S3Buckets buckets;
 
     public CustomerService(@Qualifier("jdbc") CustomerDao customerDao,
                            CustomerDTOMapper customerDTOMapper,
-                           PasswordEncoder passwordEncoder) {
+                           PasswordEncoder passwordEncoder,
+                           S3Service s3Service,
+                           S3Buckets buckets) {
         this.customerDao = customerDao;
         this.customerDTOMapper = customerDTOMapper;
         this.passwordEncoder = passwordEncoder;
+        this.s3Service = s3Service;
+        this.buckets = buckets;
     }
 
     public List<CustomerDTO> getAllCustomers() {
@@ -106,5 +116,42 @@ public class CustomerService {
 
         customerDao.updateCustomer(customer);
     }
+    public void uploadCustomerProfileImage(Integer customerId,
+                                           MultipartFile file) {
+        if (!customerDao.existsCustomerById(customerId)) {
+            throw new ResourceNotFoundException(
+            "customer with id [%s] not found".formatted(customerId)
+            );
+        }         
+        String profileImageId = UUID.randomUUID().toString();
+        try {
+            s3Service.putObject(
+                buckets.getCustomer(),
+                "profile-image/%s/%s".formatted(customerId, profileImageId),
+                file.getBytes()
+            );
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+          }
+          // TODO: Store image to postgres
+    }
+
+    public byte[] getCustomerProfileImage(Integer customerId) {
+        var customer = customerDao.selectCustomerById(customerId)
+                .map(customerDTOMapper)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "customer with id [%s] not found".formatted(customerId)
+                ));
+        // TODO: Check if profileImageId is empty or null
+        var profileImageId = "TODO";
+
+
+        
+        byte[] profileImage = s3Service.getObject(
+            buckets.getCustomer(),
+            "profile-image/%s/%s".formatted(customerId, profileImageId)        );
+        return profileImage;
+    }
+
 }
 

@@ -3,6 +3,7 @@ package com.amigoscode;
 import com.amigoscode.customer.Customer;
 import com.amigoscode.customer.CustomerRepository;
 import com.amigoscode.customer.Gender;
+import com.amigoscode.s3.S3Service;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
 import org.springframework.boot.CommandLineRunner;
@@ -42,6 +43,15 @@ public class Main {
                     gender);
             customerRepository.save(customer);
             System.out.println(email);
+            
+            // Test existing S3 functionality
+            /*s3Service.putObject(
+                               s3Buckets.getCustomer(),
+                               "foo",
+                               "Hello World".getBytes()                    
+            );
+           byte[] obj = s3Service.getObject(s3Buckets.getCustomer(),"foo");
+           System.out.println("Hooray: " + new String(obj));*/
         };
     }
 
